@@ -1,0 +1,34 @@
+#resume-cover, #resume-main{
+  background-color: white;
+  padding: 2em;
+  margin: 10px;
+  border-radius: 10px;
+  font-family: Bahnschrift, serif;
+  font-size: 20px;
+}
+#contact {
+  text-align: center;
+}
+#college, #north-star, #western, #fresh-co,
+#western-coop, #jackminer, #pumpkin-fest, #unifor{
+  display:flex;
+  justify-content: space-between;
+}
+p{
+  padding: 0;
+  margin: 0;
+}
+#contact-page, #contact-page h1{
+  background-color: white;
+  padding: 0;
+  margin: 10px;
+  border-radius: 10px;
+}
+.horiz-line{
+  padding-bottom: 10px;
+}
+#signature{
+  font-family: "Freestyle Script", serif;
+  font-size: 50px;
+  color: cornflowerblue;
+}

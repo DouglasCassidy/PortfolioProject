@@ -1,0 +1,94 @@
+<div id="title">
+  <h1>{{title}} <a [href]="gitHubLink">Github</a></h1>
+</div>
+<section id="project">
+  <h1>Angular Project</h1>
+  <h3>main.ts</h3>
+</section>
+<section id="code">
+  <pre id="angular">
+import &lbrace; bootstrapApplication &#125; from '&#64;angular/platform-browser';
+import &#123; provideRouter, Routes&#125; from "&#64;angular/router";
+import &#123; AppComponent &#125; from './app/app.component';
+import &#123;ContentListComponent&#125; from "./app/content-list/content-list.component";
+import &#123;provideHttpClient, &#125; from "&#64;angular/common/http";
+import &#123;HttpClientInMemoryWebApiModule&#125; from "angular-in-memory-web-api";
+import &#123;InMemoryDataServiceService&#125; from "./app/service/in-memory-data-service.service";
+import &#123;importProvidersFrom&#125; from "&#64;angular/core";
+
+/**
+ * &#60;h1>Routes&#60;/h1>
+ * &#60;p>Invoked to provide a better solution to
+ * efficiently switch between pages&#60;/p>
+ */
+const routes: Routes = [
+
+  /**
+   * Default path | Eager Loading
+   */
+    &#123;path: '', redirectTo:"/courses", pathMatch:"full"&#125;,
+
+  // home page
+    &#123;path:'courses', component: ContentListComponent&#125;,
+
+  //selected course,
+    &#123;path: 'courses/:id',
+    loadComponent: () => import('./app/content-list-item/content-list-item.component').then(m => m.ContentListItemComponent)&#125;,
+  // modify a course
+    &#123;path: 'modify-course/:id',
+    loadComponent: () => import('./app/modify-list/modify-list.component').then(m => m.ModifyListComponent)&#125;,
+
+  // page not found
+    &#123;path: "**",
+    loadComponent: () =>
+      import('./app/page-not-found/page-not-found.component').then(
+        m => m.PageNotFoundComponent)&#125;,
+]
+bootstrapApplication(AppComponent, &#123;
+    providers: [
+      provideHttpClient(),
+      provideRouter(routes),
+      importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(
+    InMemoryDataServiceService, &#123;delay: 1&#125;))
+  ],
+&#125;).catch(err => console.error(err));
+  </pre>
+  <div id="mockData">
+    <h1>mock-contents.ts</h1>
+  </div>
+  <pre>
+    import &#123;Course&#125; from "../INT/course";
+
+    export const courseList: Course[] = [
+
+    &#123;
+      id: 1,
+      name: "JavaScript Frameworks",
+      description:"Programming with Angular",
+      roomNumber:"A0306",
+      floorNumber:0
+    &#125;,
+    &#123;
+    id: 2,
+    name: "Java Programming",
+    description:"Programming with Java and JavaFX",
+    roomNumber:"A0341",
+    floorNumber:0,
+  &#125;,
+    &#123;
+      id: 3,
+      name: "Portfolio Development",
+      description: "Making a career portfolio",
+      roomNumber: "A3216",
+      floorNumber: 3
+  &#125;,
+    &#123;
+      id: 4,
+      name: "PHP & MYSQL",
+      description: "Programming with MYSQL and PDO",
+      roomNumber: "A0306",
+      floorNumber: 0
+  &#125;
+]
+  </pre>
+</section>
