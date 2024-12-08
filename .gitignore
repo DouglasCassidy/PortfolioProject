@@ -20,6 +20,8 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 
+/douglas.jpg
+
 # Visual Studio Code
 .vscode/*
 !.vscode/settings.json
@@ -41,4 +43,3 @@ testem.log
 .DS_Store
 Thumbs.db
 
-src/app/home/douglas.jpg
